@@ -1,6 +1,18 @@
 ## Coursera: R programming Assignment 2
 ## SCOPING RULES
-## =====================================
+## ===================================================================
+## ============================== USAGE ==============================
+## 1. Create matrix from random normal variables
+##    > mymat = matrix(rnorm(16,2,1), nrow = 4, ncol = 4)
+##
+## 2. Create special matrix object using 'makeCacheMatrix'
+##    > mymatSP = makeCacheMatrix(mymat)
+##
+## 3. Compute inverse of special matrix created in 2
+##    > cacheSolve(mymatSP)
+
+##====================== OR SIMPLY CALL LIKE THIS =====================
+## cacheSolve(makeCacheMatrix(matrix(rnorm(16,2,1),nrow = 4, ncol = 4)))
 
 ## makeCacheMatrix takes a matrix and creates a special "matrix" object 
 ## that can cache its inverse
