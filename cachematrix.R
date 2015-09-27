@@ -18,18 +18,18 @@
 ## that can cache its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
-        inv <- NULL
+        inv <- NULL                          # Initialize value of inv (stores matrix inverse)
         set <- function(y) {
-                x <<- y
-                inv <<- NULL                 # Assign NULL to inv object
+                x <<- y                      # Assign value y to object 'x' in environment of function
+                inv <<- NULL                 # set inv to NULL if matrix 'x' changes 
         }
-        get <- function() x                  #  get matrix x
+        get <- function() x                  # get matrix 'x'
         setInv <- function(solve) {
-                inv <<- solve                # solve for matrix inverse
+                inv <<- solve                # compute & save inverse of matrix 'x'
         }
-        getInv <- function() inv             # get solved matrix inverse
+        getInv <- function() inv             # return the inverse of matrix 'x' 
         
-        list(set = set, get = get,           # create list from function
+        list(set = set, get = get,           # function returns a list
              setInv = setInv,
              getInv = getInv)
 }
@@ -40,8 +40,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ## then cacheSolve retrieves the inverse from the cache.
 
 cacheSolve <- function(x, ...) {
-        inv <- x$getInv()                     # get inv matrix (NULL if not calculated)
-        if(!is.null(inv)) {                   # check if inv of matrix exists
+        inv <- x$getInv()                     # get inverse of matrix 'x' (NULL if not computed)
+        if(!is.null(inv)) {                   # check if inv of matrix exists 
                 message("getting cached data")
                 return(inv)
         }
@@ -49,5 +49,5 @@ cacheSolve <- function(x, ...) {
         data <- x$get()                       # get matrix 'x' 
         inv <- solve(data, ...)               # solve inverse of matrix
         x$setInv(inv)                         # Saves the inverse of matrix 'x' (inv)
-        inv                                   # Returns a matrix inv, the inverse of 'x'
+        inv                                   # Return matrix inv, the inverse of 'x'
 }
